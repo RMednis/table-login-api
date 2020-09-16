@@ -1,0 +1,19 @@
+version: "1.0"
+services:
+  scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: OTRACK-API:latest
+    deploy:
+      restart_policy:
+        condition: always
+        delay: 30s
+        max_attempts: 5
+        window: 300s
+    environment:
+      # Database config
+      - DB_HOST=localhost
+      - DB_USER=user
+      - DB_PASS=password
+      - DB_NAME=database_name
